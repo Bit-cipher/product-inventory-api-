@@ -43,8 +43,7 @@ app.put('/api/products/:id', (req, res) => {
    if (category != undefined) product.category = category;
 
    res.status (200).json({
-      message: "Product updated successfully"
-      product,
+      message: "Product updated successfully", product
    });
 });
 
