@@ -22,4 +22,30 @@ app.get('/api/products/:id', (req, res) => {
      res.status(200).json(product);
 });
 
+//UPDATE Endpoint
+app.put('/api/products/:id', (req, res) => {
+   const id = parseInt(req.params.id);
+
+   const product = products.find((product) => product.id ===id);
+
+   if (!product){
+      return res.status(404).json({
+         message: 'Product not found',
+      });
+   }
+
+   const {name, description, price, stock, category} = req.body;
+   
+   if (name != undefined) product.name = name;
+   if (description != undefined) product.description = description
+   if (price != undefined) product.price = price;
+   if (stock != undefined) product.stock = stock;
+   if (category != undefined) product.category = category;
+
+   res.status (200).json({
+      message: "Product updated successfully"
+      product,
+   });
+});
+
 app.listen(PORT, () => console.log(`Server is running on port ${PORT}`));
